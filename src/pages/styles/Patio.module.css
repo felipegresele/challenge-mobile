@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* centraliza horizontalmente */
+  justify-content: center; /* centraliza verticalmente */
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.title {
+  color: #1db954;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: #d93025;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.loading {
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.listContainer {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.motoItem {
+  list-style: none;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  color: #000000;
+}
+
+.motoItem strong {
+  color: #1db954;
+}
