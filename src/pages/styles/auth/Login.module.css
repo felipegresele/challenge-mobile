@@ -3,24 +3,26 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f5f5f5;
+  background: #0d0d0d; /* fundo preto */
   font-family: "Roboto", sans-serif;
+  padding: 1rem;
 }
 
 .card {
-  background: #ffffff;
+  background: #1a1a1a; /* cinza escuro */
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   width: 100%;
   max-width: 400px;
   text-align: center;
+  color: #e6e6e6;
 }
 
 .title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #00a859;
+  color: #00a859; /* verde mottu */
   margin-bottom: 1.5rem;
 }
 
@@ -33,22 +35,24 @@
 
 .label {
   font-size: 0.9rem;
-  color: #333;
+  color: #cccccc;
   margin-bottom: 0.5rem;
 }
 
 .input {
   padding: 0.8rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
+  background: #0d0d0d;
+  color: #e6e6e6;
   border-radius: 8px;
   outline: none;
   font-size: 1rem;
-  transition: border 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .input:focus {
   border-color: #00a859;
-  box-shadow: 0 0 4px rgba(0, 168, 89, 0.4);
+  box-shadow: 0 0 6px rgba(0, 168, 89, 0.5);
 }
 
 .button {
@@ -61,21 +65,22 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .button:hover {
   background: #008f4a;
+  transform: translateY(-2px);
 }
 
 .errorMessage {
   font-size: 0.85rem;
-  color: #d9534f;
+  color: #ff4d4f;
   margin-top: 0.4rem;
 }
 
 .serverError {
   margin-top: 1rem;
-  color: #d9534f;
+  color: #ff4d4f;
   font-weight: bold;
 }

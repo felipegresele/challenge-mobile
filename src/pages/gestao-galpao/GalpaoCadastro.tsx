@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import styles from "./styles/entitis/CadastroGalpao.module.css"
+import styles from "../styles/entitis/CadastroGalpao.module.css"
 
 interface GalpaoForm {
-    name: string;
-    adress: string;
-    capacity: number;
+    nome: string;
+    endereco: string;
+    capacidade: number;
 }
 
 export function GalpaoCadastro() {
 
     const { control, reset, handleSubmit } = useForm<GalpaoForm>({
         defaultValues: {
-            name: "",
-            adress: "",
-            capacity: 0,
+            nome: "",
+            endereco: "",
+            capacidade: 0,
         }
     })
 
@@ -44,7 +44,7 @@ export function GalpaoCadastro() {
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <h1 className={styles.title}>Cadastro de Galpão</h1>
                 <Controller
-                    name="name"
+                    name="nome"
                     control={control}
                     rules={{
                         required: "O nome é obrigatório",
@@ -68,7 +68,7 @@ export function GalpaoCadastro() {
                 />
 
                 <Controller
-                    name="adress"
+                    name="endereco"
                     control={control}
                     rules={{
                         required: "O endereço é obrigatório",
@@ -90,7 +90,7 @@ export function GalpaoCadastro() {
                 />
 
                 <Controller
-                    name="capacity"
+                    name="capacidade"
                     control={control}
                     rules={{
                         required: "A capacidade é obrigátoria",

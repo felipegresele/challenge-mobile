@@ -3,8 +3,9 @@ import CadastroUsuario from "./pages/auth/CadastroUsuario"
 import MenuDashboard from "./pages/MenuDashboard"
 import Home from "./pages/Home"
 import { LoginUsuario } from "./pages/auth/LoginUsuario"
-import { MotoqueiroCadastro } from "./pages/MotoqueiroCadastro"
-import { GalpaoCadastro } from "./pages/GalpaoCadastro"
+import { MotoqueiroCadastro } from "./pages/gestao-motoqueiro/MotoqueiroCadastro"
+import { GalpaoCadastro } from "./pages/gestao-galpao/GalpaoCadastro"
+import { PageNotFound } from "./pages/auth/PageNotFound"
 
 
 function App() {
@@ -16,8 +17,11 @@ function App() {
         <Route path="/cadastro" element={<CadastroUsuario />} />
         <Route path="/login" element={<LoginUsuario />} />
         <Route path="/dashboard" element={<MenuDashboard />} />
-        <Route path="/motoqueiro-cadastro" element={<MotoqueiroCadastro />} />
-        <Route path="/galpao-cadastro" element={<GalpaoCadastro />} />
+        <Route path="/cadastrar-motoqueiro" element={<MotoqueiroCadastro />} />
+        <Route path="/cadastrar-galpao" element={<GalpaoCadastro />} />
+        {/* <Route path="/listar-galpoes" element={<GalpaoLista />} />
+        <Route path="/listar-motoqueiros" element={<MotoqueiroLista />} /> */}
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
     

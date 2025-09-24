@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  gap: 20px;
+  background-color: #0d0d0d; /* fundo preto */
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #00a859; /* verde Mottu */
+  margin: 0;
+}
+
+p {
+  font-size: 2rem;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+a {
+  font-size: 1rem;
+  color: #0d0d0d;
+  text-decoration: none;
+  background-color: #00a859;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+a:hover {
+  background-color: #008f4a;
+  transform: translateY(-2px);
+}
