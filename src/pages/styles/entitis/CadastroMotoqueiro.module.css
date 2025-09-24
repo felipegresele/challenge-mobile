@@ -1,10 +1,28 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px;
   background-color: #111; 
   min-height: 100vh;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  background-color: #00a859;
+  color: #0d0d0d;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.backLink:hover {
+  background-color: #008f4a;
+  transform: translateY(-2px);
 }
 
 .form {
@@ -34,7 +52,7 @@
 .label {
   font-weight: 500;
   margin-bottom: 6px;
-  color: #00ff80;
+  color: #fff;
 }
 
 .input {
@@ -53,7 +71,7 @@
   background: #1f1f1f;
 }
 
-.error-message {
+.errorMessage {
   color: #ed3131;
   font-size: 13px;
   margin-top: 4px;

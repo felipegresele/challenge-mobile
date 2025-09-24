@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import styles from "../styles/entitis/CadastroMotoqueiro.module.css"
+import { Link } from "react-router-dom";
 
 interface MotoqueiroForm {
     nomeCompleto: string;
@@ -46,6 +47,9 @@ export function MotoqueiroCadastro() {
 
     return (
         <div className={styles.container}>
+            <Link to="/dashboard" className={styles.backLink}>
+                Voltar para dashboard
+            </Link>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <h1 className={styles.title}>Cadastro de Motoqueiro</h1>
                 <Controller
@@ -60,14 +64,14 @@ export function MotoqueiroCadastro() {
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
-                            <label>Nome Completo</label>
+                            <label className={styles.label}>Nome Completo</label>
                             <input
                                 {...field}
                                 type="text"
                                 placeholder="Digite o nome do motoqueiro"
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
@@ -84,7 +88,8 @@ export function MotoqueiroCadastro() {
                         maxLength: {
                             value: 11,
                             message: "CPF deve ter 11 digitos"
-                        }
+                        },
+                        pattern: { value: /^[0-9]*$/, message: "Digite apenas números" },
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
@@ -98,7 +103,7 @@ export function MotoqueiroCadastro() {
                                 required
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
@@ -112,6 +117,7 @@ export function MotoqueiroCadastro() {
                             value: 15,
                             message: "Telefone pode ter no maxímo 15 caracteres"
                         },
+                        pattern: { value: /^[0-9]*$/, message: "Digite apenas números" },
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
@@ -123,7 +129,7 @@ export function MotoqueiroCadastro() {
                                 placeholder="Digite o número de telefone"
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
@@ -136,7 +142,7 @@ export function MotoqueiroCadastro() {
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
-                            <label>
+                            <label className={styles.label}>
                                 <input
                                     type="checkbox"
                                     checked={field.value || false}
@@ -147,7 +153,7 @@ export function MotoqueiroCadastro() {
                             </label>
 
                             {fieldState?.error?.message && (
-                                <p className="error-message">{fieldState.error.message}</p>
+                                <p className={styles.errorMessage}>{fieldState.error.message}</p>
                             )}
                         </div>
                     )}

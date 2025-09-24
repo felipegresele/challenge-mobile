@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../styles/auth/Login.module.css";
 
 interface LoginForm {
+  username: string;
   email: string;
   password: string;
 }
@@ -24,8 +25,8 @@ export function LoginUsuario() {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        const result = response.json();
-        localStorage.setItem("username", result.username);
+        const result = await response.text();
+        localStorage.setItem("nomeUsuario", result)
         console.log("deu certo")
         navigate("/dashboard");
       } else {
@@ -36,6 +37,7 @@ export function LoginUsuario() {
       setError("Erro na conexão com o servidor");
     }
   };
+
 
   return (
     <div className={styles.container}>

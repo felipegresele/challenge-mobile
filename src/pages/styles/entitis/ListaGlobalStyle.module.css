@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #0d0d0d;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00a859;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  background-color: #00a859;
+  color: #0d0d0d;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.backLink:hover {
+  background-color: #008f4a;
+  transform: translateY(-2px);
+}
+
+.tableWrapper {
+  width: 100%;
+  max-width: 800px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: 12px;
+  border-bottom: 2px solid #333;
+  background-color: #00a859;
+  color: #0d0d0d;
+  font-weight: 600;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  color: #e6e6e6;
+}
+
+.table tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #111;
+}
+
+.table tr:hover {
+  background-color: #004d33;
+  cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #000000;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  border: 2px solid green
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirmBtn {
+  background: #00a859;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirmBtn:hover {
+  background: #008f4a;
+}
+
+.cancelBtn {
+  background: #d9534f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: #b52b27;
+}

@@ -2,39 +2,47 @@ import { useNavigate } from "react-router-dom";
 import styles from "./styles/MenuDashboard.module.css";
 import { Warehouse, Bike, LogOut } from "lucide-react";
 import { Header } from "./components/Header";
+import { useEffect } from "react";
 
 function MenuDashboard() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const nome = localStorage.getItem("nomeUsuario")
+
+    if (!nome) {
+      navigate("/", {replace: true}); //evitar voltar com o btn de voltar
+    }
+  }, [navigate])
+
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Mottu - Painel</h1>
-      </header>
+
+      <Header />
 
       {/* Grid de opções */}
       <div className={styles.grid}>
         {/* Galpão */}
         <div
           className={styles.card}
-          onClick={() => navigate("/cadastrar-galpao")}
+          onClick={() => navigate("/listar-galpoes")}
         >
           <Warehouse className={styles.icon} />
-          <h2 className={styles.cardTitle}>Cadastrar Galpão</h2>
+          <h2 className={styles.cardTitle}>Ver Galpões</h2>
           <p className={styles.cardDesc}>
-            Adicione novos galpões ao sistema.
+            Lista de galpões do sistema.
           </p>
         </div>
 
         {/* Motoqueiro */}
         <div
           className={styles.card}
-          onClick={() => navigate("/cadastrar-motoqueiro")}
+          onClick={() => navigate("/listar-motoqueiros")}
         >
           <Bike className={styles.icon} />
-          <h2 className={styles.cardTitle}>Cadastrar Motoqueiro</h2>
+          <h2 className={styles.cardTitle}>Ver Motoqueiro</h2>
           <p className={styles.cardDesc}>
-            Registre motoqueiros na plataforma.
+            Lista de motoqueiros do sistema.
           </p>
         </div>
       </div>

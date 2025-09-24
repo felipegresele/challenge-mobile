@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import styles from "../styles/entitis/CadastroGalpao.module.css"
+import { Link } from "react-router-dom";
 
 interface GalpaoForm {
     nome: string;
@@ -41,6 +42,9 @@ export function GalpaoCadastro() {
     return (
 
         <div className={styles.container}>
+            <Link to="/dashboard" className={styles.backLink}>
+                Voltar para dashboard
+            </Link>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <h1 className={styles.title}>Cadastro de Galpão</h1>
                 <Controller
@@ -55,14 +59,14 @@ export function GalpaoCadastro() {
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
-                            <label>Nome</label>
+                            <label className={styles.label}>Nome</label>
                             <input
                                 {...field}
                                 type="text"
                                 placeholder="Digite o nome do galpão"
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
@@ -84,7 +88,7 @@ export function GalpaoCadastro() {
                                 required
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
@@ -97,14 +101,14 @@ export function GalpaoCadastro() {
                     }}
                     render={({ field, fieldState }) => (
                         <div className={styles.inputGroup}>
-                            <label>Capacidade</label>
+                            <label className={styles.label}>Capacidade</label>
                             <input
                                 {...field}
                                 type="number"
                                 placeholder="Digite o número da capacidaede"
                                 className={styles.input}
                             />
-                            {fieldState?.error?.message && <p className="error-message">{fieldState.error.message}</p>}
+                            {fieldState?.error?.message && <p className={styles.errorMessage}>{fieldState.error.message}</p>}
                         </div>
                     )}
                 />
