@@ -1,28 +1,50 @@
-🛵 Mottu - Sistema de Gestão de Motos
-Este é um sistema web desenvolvido para a Mottu, com o objetivo de facilitar o gerenciamento de usuários e motos. A aplicação permite o cadastro de usuários, cadastro de motos e visualização das motos cadastradas no banco de dados.
+# Welcome to your Expo app 👋
 
-⚙️ Funcionalidades
-Cadastro de novos usuários com dados pessoais e turno de trabalho.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-Cadastro de motos associadas a usuários.
+## Get started
 
-Listagem completa das motos armazenadas no sistema.
+1. Install dependencies
 
-Integração com API REST para comunicação entre front-end e back-end.
+   ```bash
+   npm install
+   ```
 
-🖥️ Tecnologias Utilizadas
-Front-end:
-React com TypeScript
+2. Start the app
 
-React Router DOM
+   ```bash
+   npx expo start
+   ```
 
-CSS Modules
+In the output, you'll find options to open the app in a
 
-Back-end:
-Java (Servlets ou Spring Boot)
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-API REST
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-JPA ou JDBC
+## Get a fresh project
 
-MySQL (ou banco relacional equivalente)
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
