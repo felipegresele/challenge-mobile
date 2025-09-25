@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { 
-  View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, ScrollView 
+import {
+  View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, ScrollView, Modal, TextInput
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter, Stack } from "expo-router";
 
 interface GalpaoResponse {
   id: number;
@@ -14,6 +14,8 @@ interface GalpaoResponse {
 
 export default function ListaGalpao() {
   const [lista, setLista] = useState<GalpaoResponse[]>([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [galpaoEdit, setGalpaoEdit] = useState<GalpaoResponse | null>(null);
   const router = useRouter();
 
   const listaGalpoes = async () => {
@@ -24,16 +26,14 @@ export default function ListaGalpao() {
         setLista(result);
       }
     } catch (error) {
-      console.log("Erro na requisição");
+      console.log("Erro na requisição", error);
     }
   };
 
   const excluirGalpao = (id: number) => {
     const deletar = async () => {
       try {
-        const response = await fetch(`http://10.0.2.2:8080/galpoes/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(`http://10.0.2.2:8080/galpoes/${id}`, { method: "DELETE" });
         if (response.ok) {
           Alert.alert("Sucesso", "Galpão deletado com sucesso!");
           listaGalpoes();
@@ -44,15 +44,37 @@ export default function ListaGalpao() {
         Alert.alert("Erro", "Erro na conexão com o servidor");
       }
     };
+    Alert.alert("Confirmação", "Deseja realmente excluir este galpão?", [
+      { text: "Cancelar", style: "cancel" },
+      { text: "Sim", onPress: deletar },
+    ]);
+  };
 
-    Alert.alert(
-      "Confirmação",
-      "Deseja realmente excluir este galpão?",
-      [
-        { text: "Cancelar", style: "cancel" },
-        { text: "Sim", onPress: deletar },
-      ]
-    );
+  const abrirModal = (galpao: GalpaoResponse) => {
+    setGalpaoEdit(galpao);
+    setModalVisible(true);
+  };
+
+  const salvarEdicao = async () => {
+    if (!galpaoEdit) return;
+
+    try {
+      const response = await fetch(`http://10.0.2.2:8080/galpoes/${galpaoEdit.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(galpaoEdit),
+      });
+      if (response.ok) {
+        Alert.alert("Sucesso", "Galpão atualizado!");
+        setModalVisible(false);
+        listaGalpoes();
+      } else {
+        Alert.alert("Erro", "Falha ao atualizar galpão");
+      }
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Erro", "Erro na conexão");
+    }
   };
 
   useEffect(() => {
@@ -69,7 +91,7 @@ export default function ListaGalpao() {
         <TouchableOpacity onPress={() => excluirGalpao(item.id)}>
           <MaterialCommunityIcons name="trash-can-outline" size={24} color="red" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push(`/pages/editar-galpao?id=${item.id}`)}>
+        <TouchableOpacity onPress={() => abrirModal(item)}>
           <MaterialCommunityIcons name="pencil-outline" size={24} color="#00a859" />
         </TouchableOpacity>
       </View>
@@ -77,23 +99,74 @@ export default function ListaGalpao() {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Lista de Galpões</Text>
-      <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.backBtn} onPress={() => router.push("/pages/dashboard")}>
-          <Text style={styles.backBtnText}>Voltar para dashboard</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.backBtn} onPress={() => router.push("/pages/cadastrar-galpao")}>
-          <Text style={styles.backBtnText}>Adicionar Galpão</Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={lista}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 50 }}
+    <>
+      <Stack.Screen
+        options={{
+          title: "Lista de Galpões",
+          headerStyle: { backgroundColor: "#0d0d0d" },
+          headerTintColor: "#00a859",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
       />
-    </ScrollView>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>Lista de Galpões</Text>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity style={styles.backBtn} onPress={() => router.push("/pages/dashboard")}>
+            <Text style={styles.backBtnText}>Voltar para dashboard</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.backBtn} onPress={() => router.push("/pages/cadastrar-galpao")}>
+            <Text style={styles.backBtnText}>Adicionar Galpão</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={lista}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingBottom: 50 }}
+        />
+      </ScrollView>
+
+      {/* Modal de edição */}
+      <Modal visible={modalVisible} animationType="slide" transparent>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Editar Galpão</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Nome"
+              placeholderTextColor="#aaa"
+              value={galpaoEdit?.nome}
+              onChangeText={(text) => galpaoEdit && setGalpaoEdit({ ...galpaoEdit, nome: text })}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Endereço"
+              placeholderTextColor="#aaa"
+              value={galpaoEdit?.endereco}
+              onChangeText={(text) => galpaoEdit && setGalpaoEdit({ ...galpaoEdit, endereco: text })}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Capacidade"
+              placeholderTextColor="#aaa"
+              keyboardType="numeric"
+              value={galpaoEdit?.capacidade.toString()}
+              onChangeText={(text) =>
+                galpaoEdit && setGalpaoEdit({ ...galpaoEdit, capacidade: Number(text) })
+              }
+            />
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
+              <TouchableOpacity style={styles.button} onPress={salvarEdicao}>
+                <Text style={styles.buttonText}>Salvar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.button, { backgroundColor: "#ff5555" }]} onPress={() => setModalVisible(false)}>
+                <Text style={styles.buttonText}>Cancelar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    </>
   );
 }
 
@@ -146,5 +219,43 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     gap: 15,
     marginTop: 10,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContent: {
+    backgroundColor: "#1a1a1a",
+    padding: 20,
+    borderRadius: 12,
+    width: "90%",
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#00a859",
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  input: {
+    backgroundColor: "#0d0d0d",
+    color: "#fff",
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
+  button: {
+    backgroundColor: "#00a859",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  buttonText: {
+    color: "#0d0d0d",
+    fontWeight: "bold",
   },
 });

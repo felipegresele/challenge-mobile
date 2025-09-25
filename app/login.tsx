@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface LoginForm {
@@ -40,62 +40,73 @@ export default function LoginUsuario() {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.title}>Login</Text>
+        <>
+            <Stack.Screen
+                options={{
+                    title: "Dashboard",
+                    headerStyle: { backgroundColor: "#0d0d0d" },
+                    headerTintColor: "#00a859",
+                    headerTitleStyle: { fontWeight: "bold" },
+                }}
+            />
+            <ScrollView contentContainerStyle={styles.container}>
+                <View style={styles.card}>
+                    <Text style={styles.title}>Login</Text>
 
-                <Controller
-                    name="email"
-                    control={control}
-                    rules={{
-                        required: "O email é obrigatório",
-                        pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Digite um email válido" }
-                    }}
-                    render={({ field: { onChange, onBlur, value }, fieldState }) => (
-                        <View style={styles.inputGroup}>
-                            <Text style={styles.label}>Email</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Digite seu email"
-                                placeholderTextColor="#999"
-                                keyboardType="email-address"
-                                value={value}
-                                onChangeText={onChange}
-                                onBlur={onBlur}
-                            />
-                            {fieldState.error && <Text style={styles.error}>{fieldState.error.message}</Text>}
-                        </View>
-                    )}
-                />
+                    <Controller
+                        name="email"
+                        control={control}
+                        rules={{
+                            required: "O email é obrigatório",
+                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Digite um email válido" }
+                        }}
+                        render={({ field: { onChange, onBlur, value }, fieldState }) => (
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.label}>Email</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Digite seu email"
+                                    placeholderTextColor="#999"
+                                    keyboardType="email-address"
+                                    value={value}
+                                    onChangeText={onChange}
+                                    onBlur={onBlur}
+                                />
+                                {fieldState.error && <Text style={styles.error}>{fieldState.error.message}</Text>}
+                            </View>
+                        )}
+                    />
 
-                <Controller
-                    name="password"
-                    control={control}
-                    rules={{ required: "A senha é obrigatória" }}
-                    render={({ field: { onChange, onBlur, value }, fieldState }) => (
-                        <View style={styles.inputGroup}>
-                            <Text style={styles.label}>Senha</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Digite sua senha"
-                                placeholderTextColor="#999"
-                                secureTextEntry
-                                value={value}
-                                onChangeText={onChange}
-                                onBlur={onBlur}
-                            />
-                            {fieldState.error && <Text style={styles.error}>{fieldState.error.message}</Text>}
-                        </View>
-                    )}
-                />
+                    <Controller
+                        name="password"
+                        control={control}
+                        rules={{ required: "A senha é obrigatória" }}
+                        render={({ field: { onChange, onBlur, value }, fieldState }) => (
+                            <View style={styles.inputGroup}>
+                                <Text style={styles.label}>Senha</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Digite sua senha"
+                                    placeholderTextColor="#999"
+                                    secureTextEntry
+                                    value={value}
+                                    onChangeText={onChange}
+                                    onBlur={onBlur}
+                                />
+                                {fieldState.error && <Text style={styles.error}>{fieldState.error.message}</Text>}
+                            </View>
+                        )}
+                    />
 
-                <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
-                    <Text style={styles.buttonText}>Entrar</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+                        <Text style={styles.buttonText}>Entrar</Text>
+                    </TouchableOpacity>
 
-                {error ? <Text style={styles.error}>{error}</Text> : null}
-            </View>
-        </ScrollView>
+                    {error ? <Text style={styles.error}>{error}</Text> : null}
+                </View>
+            </ScrollView>
+        </>
+
     );
 }
 

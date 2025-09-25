@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Warehouse, Bike, LogOut, MapPin } from "lucide-react-native";
-import { useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { Header } from "./header";
 
 export default function Dashboard() {
@@ -24,41 +24,52 @@ export default function Dashboard() {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <Header />
-            <View style={styles.header}>
-                <Text style={styles.title}>Dashboard</Text>
-            </View>
+        <>
+            <Stack.Screen
+                options={{
+                    title: "Dashboard",
+                    headerStyle: { backgroundColor: "#0d0d0d" },
+                    headerTintColor: "#00a859",
+                    headerTitleStyle: { fontWeight: "bold" },
+                }}
+            />
+            <ScrollView contentContainerStyle={styles.container}>
+                <Header />
+                <View style={styles.header}>
+                    <Text style={styles.title}>Dashboard</Text>
+                </View>
 
-            <View style={styles.grid}>
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => router.push("/pages/listar-galpoes")}
-                >
-                    <Warehouse size={48} color="green" />
-                    <Text style={styles.cardTitle}>Ver Galpões</Text>
-                    <Text style={styles.cardDesc}>Lista de galpões do sistema.</Text>
-                </TouchableOpacity>
+                <View style={styles.grid}>
+                    <TouchableOpacity
+                        style={styles.card}
+                        onPress={() => router.push("/pages/listar-galpoes")}
+                    >
+                        <Warehouse size={48} color="green" />
+                        <Text style={styles.cardTitle}>Ver Galpões</Text>
+                        <Text style={styles.cardDesc}>Lista de galpões do sistema.</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => router.push("/pages/listar-motoqueiros")}
-                >
-                    <Bike size={48} color="green" />
-                    <Text style={styles.cardTitle}>Ver Motoqueiros</Text>
-                    <Text style={styles.cardDesc}>Lista de motoqueiros do sistema.</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.card}
+                        onPress={() => router.push("/pages/listar-motoqueiros")}
+                    >
+                        <Bike size={48} color="green" />
+                        <Text style={styles.cardTitle}>Ver Motoqueiros</Text>
+                        <Text style={styles.cardDesc}>Lista de motoqueiros do sistema.</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => router.push("/pages/mapa")}
-                >
-                    <MapPin size={48} color="green" />
-                    <Text style={styles.cardTitle}>Ver Mapa</Text>
-                    <Text style={styles.cardDesc}>Localização das motos e galpões no mapa</Text>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                    <TouchableOpacity
+                        style={styles.card}
+                        onPress={() => router.push("/pages/mapa")}
+                    >
+                        <MapPin size={48} color="green" />
+                        <Text style={styles.cardTitle}>Ver Mapa</Text>
+                        <Text style={styles.cardDesc}>Localização das motos e galpões no mapa</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </>
+
     );
 }
 
