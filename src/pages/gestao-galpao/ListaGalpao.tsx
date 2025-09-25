@@ -36,14 +36,16 @@ export function ListaGalpao() {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Lista de Galpões</h1>
-            <div className={styles.btnContent}>
-                <Link to="/dashboard" className={styles.backLink}>
-                    Voltar para dashboard
-                </Link>
-                <Link to="/cadastrar-galpao" className={styles.backLink}>
-                    Adicionar Galpão
-                </Link>
+            <div className={styles.headerContent}>
+                <h1 className={styles.title}>Lista de Galpões</h1>
+                <div className={styles.btnContent}>
+                    <Link to="/dashboard" className={styles.backLink}>
+                        Voltar para dashboard
+                    </Link>
+                    <Link to="/cadastrar-galpao" className={styles.backLink}>
+                        Adicionar Galpão
+                    </Link>
+                </div>
             </div>
 
             <table className={styles.table}>
@@ -63,11 +65,11 @@ export function ListaGalpao() {
                             <td>{galpao.nome}</td>
                             <td>{galpao.endereco}</td>
                             <td>{galpao.capacidade}</td>
-                            <td style={{display: "flex", gap: 10}}>
+                            <td style={{ display: "flex", gap: 10 }}>
                                 <BotaoExcluirGalpao galpaoID={galpao.id} onSuccess={listaGalpoes} />
-                                <Pencil 
-                                    size={20} 
-                                    color="white" 
+                                <Pencil
+                                    size={20}
+                                    color="white"
                                     style={{ cursor: "pointer" }}
                                     onClick={() => navigate("/editar-galpao", { state: { galpao } })}
                                 />
@@ -85,8 +87,8 @@ function BotaoExcluirGalpao(props: { galpaoID: number, onSuccess: () => void }) 
     const [modal, setModal] = useState(false)
     const [mensagem, setMensagem] = useState("")
 
-    const onSubmit = async() => {
-        
+    const onSubmit = async () => {
+
         try {
             const response = await fetch(`http://localhost:8080/galpoes/${props.galpaoID}`, {
                 method: "DELETE",

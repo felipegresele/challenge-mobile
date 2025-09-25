@@ -9,6 +9,7 @@ import { PageNotFound } from "./pages/auth/PageNotFound"
 import { ListaGalpao } from "./pages/gestao-galpao/ListaGalpao"
 import { ListaMotoqueiro } from "./pages/gestao-motoqueiro/ListaMotoqueiro"
 import { EditarGalpao } from "./pages/gestao-galpao/EditarGalpao"
+import { EditarMotoqueiro } from "./pages/gestao-motoqueiro/EditarMotoqueiro"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/editar-galpao" element={<EditarGalpao  />} />
         <Route path="/cadastrar-motoqueiro" element={<MotoqueiroCadastro />} />
         <Route path="/listar-motoqueiros" element={<ListaMotoqueiro />} /> 
+        <Route path="/editar-motoqueiro" element={<EditarMotoqueiro  />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

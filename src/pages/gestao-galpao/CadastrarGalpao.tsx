@@ -42,8 +42,8 @@ export function GalpaoCadastro() {
     return (
 
         <div className={styles.container}>
-            <Link to="/dashboard" className={styles.backLink}>
-                Voltar para dashboard
+            <Link to="/listar-galpoes" className={styles.backLink}>
+                Voltar para lista
             </Link>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <h1 className={styles.title}>Cadastro de Galpão</h1>

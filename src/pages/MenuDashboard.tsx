@@ -46,12 +46,6 @@ function MenuDashboard() {
           </p>
         </div>
       </div>
-
-      {/* Botão Sair */}
-      <button onClick={() => navigate("/")} className={styles.logout}>
-        <LogOut className={styles.logoutIcon} />
-        Sair
-      </button>
     </div>
   );
 }

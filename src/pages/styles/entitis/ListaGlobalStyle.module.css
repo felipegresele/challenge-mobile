@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
   padding: 40px 20px;
@@ -136,4 +135,16 @@
 
 .cancelBtn:hover {
   background: #b52b27;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btnContent {
+  display: flex;
+  gap: 12px; 
 }

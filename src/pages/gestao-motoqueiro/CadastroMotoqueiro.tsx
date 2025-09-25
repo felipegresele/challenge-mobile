@@ -4,6 +4,7 @@ import styles from "../styles/entitis/CadastroMotoqueiro.module.css"
 import { Link } from "react-router-dom";
 
 interface MotoqueiroForm {
+    id: number;
     nomeCompleto: string;
     cpf: string;
     telefone: string;
@@ -47,8 +48,8 @@ export function MotoqueiroCadastro() {
 
     return (
         <div className={styles.container}>
-            <Link to="/dashboard" className={styles.backLink}>
-                Voltar para dashboard
+            <Link to="/listar-motoqueiros" className={styles.backLink}>
+                Voltar para lista
             </Link>
             <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <h1 className={styles.title}>Cadastro de Motoqueiro</h1>
